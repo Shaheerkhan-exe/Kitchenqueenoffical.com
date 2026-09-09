@@ -7,8 +7,8 @@
 
   const DISHES = [
     /* --- DEALS --- */
-    { id: "d1", name: "Friday Family Deal", cat: "deals", price: 1250, was: 1899, serves: 4, img: "chicken biryani.png", tag: "DEAL", hot: true, desc: "Chicken Biryani (2 servings) + Salad + Raita + 1.5L Cold Drink." },
-    { id: "d2", name: "Ghar Ka Khana Box", cat: "deals", price: 1250, was: 1290, serves: 4, img: "Daal Chawal.jpg", tag: "DEAL", hot: true, desc: "Any daal + any salan + white rice + 4 roti — a full desi dastarkhwan." },
+    { id: "d1", name: "Friday Family Deal", cat: "deals", price: 1250, was: 1899, serves: 2, highlightServes: true, img: "chicken biryani.png", tag: "DEAL", hot: true, desc: "Chicken Biryani (2 servings) + Salad + Raita + 1.5L Cold Drink." },
+    { id: "d2", name: "Ghar Ka Khana Box", cat: "deals", price: 1250, was: 1290, serves: 2, highlightServes: true, img: "Daal Chawal.jpg", tag: "DEAL", hot: true, desc: "Any daal + any salan + white rice + 4 roti — a full desi dastarkhwan." },
 
     /* --- DAAL & SABZI --- */
     { id: "d3", name: "Yellow Daal chawal with 1 Shami", cat: "daal", price: 450, was: 380, serves: 1, img: "Yellow daal.png", tag: "BESTSELLER", hot: true, desc: "Ghee-tarka moong daal served with one hand-pressed beef shami kabab." },
@@ -37,7 +37,7 @@
     /* --- RICE --- */
     { id: "d19", name: "White Rice", cat: "rice", price: 250, serves: 1, img: "plain-white-rice.jpg", tag: "", desc: "Steamed long-grain basmati, separated grain by grain." },
     { id: "d20", name: "Daal Chawal", cat: "rice", price:350 , was: 380, serves: 1, img: "Daal Chawal.jpg", tag: "BESTSELLER", hot: true, desc: "The ultimate comfort plate — tarka daal poured over hot white rice." },
-    { id: "d21", name: "Chicken Biryani", cat: "rice", price: 350, was: 520, serves: 1, img: "chicken biryani.png", tag: "", hot: true, desc: "Basmati layered with masala chicken, kewra, aloo and fried onion." },
+    { id: "d21", name: "Chicken Biryani", cat: "rice", price: 350, was: 520, serves: 1, img: "chicken chana.png", tag: "", hot: true, desc: "Basmati layered with masala chicken, kewra, aloo and fried onion." },
 
     /* --- SIDES & RAITA --- */
     { id: "d22", name: "Egg Kharaiza (Khagina)", cat: "sides", price: 300, serves: 1, img: "khagina.png", tag: "NEW", desc: "Desi scrambled eggs with tomato, onion and green chilli — breakfast any time." },
@@ -56,15 +56,18 @@
     /* --- DESSERT --- */
     { id: "d31", name: "Shahi Kheer", cat: "dessert", price: 180, serves: 2, img: "kheer.png", tag: "", desc: "Slow-reduced rice pudding with cardamom, pistachio and almond flakes." },
 
-    /* --- BANNER DEALS --- */
-    { id: "d33", name: "2 Person Deal", cat: "deals", price: 799, was: 1100, serves: 2, img: "karahi.jpg", tag: "WOW DEAL", hot: true, desc: "From our Wow Deals banner — a full meal for two with karahi-style mains." },
-    { id: "d34", name: "Family Deal", cat: "deals", price: 999, was: 1450, serves: 4, img: "chicken biryani.png", tag: "WOW DEAL", hot: true, desc: "Family platter from the banner — biryani, salan and breads to share." },
-    { id: "d35", name: "1.5L Cold Drink", cat: "drinks", price: 250, serves: 4, img: "pepsi.avif", tag: "", desc: "1.5 litre chilled bottle, as listed on the Wow Deals banner." }
+    /* --- DRINKS EXTRA --- */
+    { id: "d35", name: "1.5L Cold Drink", cat: "drinks", price: 250, serves: 4, img: "pepsi 1.5 L.png", tag: "", desc: "1.5 litre chilled bottle, as listed on the Wow Deals banner." },
+
+    /* --- SPECIAL DEALS (Sunday only) --- */
+    { id: "d36", name: "Wow Deal", cat: "special", price: 1250, was: 1899, serves: 2, sundayOnly: true, img: "chicken biryani.png", tag: "SUNDAY", hot: true, desc: "1 Chicken Biryani (serves 1) + 1 Chicken Karahi (serves 1) + 2 Naan + Salad + Raita + 1L Pepsi." },
+    { id: "d37", name: "Weekend Deal", cat: "special", price: 1450, was: 1999, serves: 2, sundayOnly: true, img: "chicken qourma.png", tag: "SUNDAY", hot: true, desc: "1 Beef Biryani (serves 1) + 1 Chicken Qourma (serves 1) + 2 Naan + Salad + Raita." }
   ];
 
   const CATEGORIES = [
     { id: "hot", label: "Trending!", icon: "fa-fire" },
     { id: "deals", label: "Deals", icon: "fa-tags" },
+    { id: "special", label: "Special Deals", icon: "fa-star" },
     { id: "daal", label: "Daal & Sabzi", icon: "fa-bowl-food" },
     { id: "chicken", label: "Chicken", icon: "fa-drumstick-bite" },
     { id: "beef", label: "Beef & Mutton", icon: "fa-fire-burner" },
@@ -81,7 +84,7 @@
   ];
 
 
-  const BANNER_FEATURED = ["d21", "d33", "d34", "d20", "d17", "d16", "d1", "d9", "d32", "d27", "d28", "d35"];
+  const BANNER_FEATURED = ["d21", "d20", "d17", "d16", "d1", "d9", "d32", "d27", "d28", "d35"];
 
   const WEEK = [
     { day: "Monday", ids: ["d21", "d20", "d8"] },
@@ -116,10 +119,10 @@
       { label: "Extra Hot", price: 0 }
     ],
     extras: [
-      { label: "Extra Raita", price: 90 },
-      { label: "Extra Naan (2 pcs)", price: 60 },
-      { label: "Green Salad", price: 70 },
-      { label: "Disposable Cutlery", price: 30 }
+      { label: "Extra Raita", price: 50 },
+      { label: "Extra Naan", price: 80 },
+      { label: "Extra Salad", price: 80 },
+      { label: "Disposable Cutlery", price: 20 }
     ]
   };
 
@@ -130,11 +133,11 @@
 
   /* desc = description only; spice = spice level only; rice = spice + extras */
   const DESC_ONLY = new Set(["d19", "d27", "d28", "d29", "d30", "d31", "d23", "d24", "d25", "d26", "d32"]);
-  const RICE_COMBO = new Set(["d1", "d2", "d3", "d20", "d21"]);
+  const RICE_COMBO = new Set(["d1", "d2", "d3", "d20", "d21", "d36", "d37"]);
   function dishCustomize(d) {
     if (!d) return { spice: false, extras: false };
     if (DESC_ONLY.has(d.id) || d.cat === "drinks" || d.cat === "dessert") return { spice: false, extras: false };
-    if (RICE_COMBO.has(d.id) || (d.cat === "rice" && d.id !== "d19") || d.cat === "deals") return { spice: true, extras: true };
+    if (RICE_COMBO.has(d.id) || (d.cat === "rice" && d.id !== "d19") || d.cat === "deals" || d.cat === "special") return { spice: true, extras: true };
     return { spice: true, extras: false };
   }
   function servesLabel(d) {
@@ -913,9 +916,16 @@
   }
 
   /* ---------------- 6. CUSTOMIZER ---------------- */
+  function isSunday() {
+    return new Date().getDay() === 0;
+  }
+
   function openCustomizer(id, editIndex) {
     const d = dish(id);
     if (!d) return;
+    if (d.sundayOnly && !isSunday()) {
+      toast("Yeh deal sirf Sunday ko available hai", "fa-calendar-day");
+    }
     const existing = typeof editIndex === "number" ? state.cart[editIndex] : null;
     const box = document.getElementById("kqCustBox");
     const cfg = dishCustomize(d);
@@ -938,7 +948,7 @@
           <img src="${IMG + d.img}" alt="${esc(d.name)}">
           <h3>${esc(d.name)}</h3>
           <span class="base-price">${money(d.price)}</span>
-          ${serveTxt ? `<span class="kq-serve-pill"><i class="fa-solid fa-utensils"></i> ${serveTxt}</span>` : ""}
+          ${serveTxt ? `<span class="kq-serve-pill${d.highlightServes ? " highlight" : ""}"><i class="fa-solid fa-utensils"></i> ${serveTxt}</span>` : ""}
           <p>${esc(d.desc)}</p>
         </div>
         <div class="kq-cust-right">
@@ -980,6 +990,9 @@
       sync();
     }));
     box.querySelector("#kqCustAdd").addEventListener("click", () => {
+      if (d.sundayOnly && !isSunday()) {
+        return toast("Yeh deal sirf Sunday ko available hai", "fa-calendar-day");
+      }
       const spice = box.querySelector('input[name="spice"]:checked');
       if (cfg.spice && !spice) { box.querySelector("#kqCustAlert").classList.add("show"); return; }
       const extras = Array.from(box.querySelectorAll('input[name="extra"]:checked')).map((c) => ({ label: c.value, price: Number(c.dataset.price) }));
@@ -1018,6 +1031,9 @@
   function addToCart(id, opts, qty) {
     const d = dish(id);
     if (!d) return;
+    if (d.sundayOnly && !isSunday()) {
+      return toast("Yeh deal sirf Sunday ko available hai", "fa-calendar-day");
+    }
     state.cart.push({
       id: d.id, name: d.name, img: d.img, base: d.price,
       portion: (opts && opts.portion) || servesLabel(d),
@@ -1122,6 +1138,8 @@
 
   /* ---------------- 8. CARD RENDERERS ---------------- */
   function dishCard(d) {
+    const serveTxt = servesLabel(d);
+    const serveHi = d.highlightServes || Number(d.serves) === 2;
     return `<article class="kq-card">
       <div class="kq-card-img">
         <img src="${IMG + d.img}" alt="${esc(d.name)}" loading="lazy">
@@ -1129,6 +1147,7 @@
       </div>
       <div class="kq-card-body">
         <h3 class="kq-card-title">${esc(d.name)}</h3>
+        ${serveTxt ? `<span class="kq-serve-pill${serveHi && d.highlightServes ? " highlight" : ""}"><i class="fa-solid fa-utensils"></i> ${serveTxt}</span>` : ""}
         <p class="kq-card-desc">${esc(d.desc)}</p>
         <div class="kq-card-foot">
           <span class="kq-price">${money(d.price)}</span>
@@ -1145,8 +1164,19 @@
       const grid = document.getElementById("kqGrid");
       if (!grid) return;
       let active = "all";
+      let notice = document.getElementById("kqSpecialNotice");
+      if (!notice) {
+        notice = document.createElement("div");
+        notice.id = "kqSpecialNotice";
+        notice.className = "kq-special-notice";
+        notice.hidden = true;
+        notice.innerHTML = `<i class="fa-solid fa-calendar-day"></i><div><b>Sunday only</b><p>Yeh special deals sirf Sunday ko available hain. Baqi din menu se regular items order karein.</p></div>`;
+        grid.parentNode.insertBefore(notice, grid);
+      }
       const draw = () => {
+        notice.hidden = active !== "special";
         grid.innerHTML = DISHES.filter((d) => {
+          if (d.cat === "special" && active !== "special") return false;
           if (active === "all") return true;
           if (active === "hot") return !!d.hot;
           return d.cat === active;
