@@ -20,7 +20,7 @@
 
     /* --- CHICKEN --- */
     { id: "d9", name: "Chicken Karahi", cat: "chicken", price: 850, was: 999, serves: 2, img: "karahi.jpg", tag: "CHEF SPECIAL", hot: true, desc: "Wok-tossed chicken in tomato, ginger and green chilli, finished with coriander." },
-    { id: "d10", name: "Chicken Chana Daal", cat: "chicken", price: 450, serves: 2, img: "Chicken chana.png", tag: "", desc: "Chicken slow-cooked with chana daal until the gravy turns thick and glossy." },
+    { id: "d10", name: "Chicken Chana Daal", cat: "chicken", price: 450, serves: 2, img: "chicken chana.png", tag: "", desc: "Chicken slow-cooked with chana daal until the gravy turns thick and glossy." },
     { id: "d11", name: "Chicken Aalo Salan", cat: "chicken", price: 450, serves: 2, img: "chicken-aloo-salan.png", tag: "", desc: "Everyday Karachi favourite — chicken and potato in a light red salan." },
 
     /* --- BEEF & MUTTON --- */
@@ -37,7 +37,7 @@
     /* --- RICE --- */
     { id: "d19", name: "White Rice", cat: "rice", price: 250, serves: 1, img: "plain-white-rice.jpg", tag: "", desc: "Steamed long-grain basmati, separated grain by grain." },
     { id: "d20", name: "Daal Chawal", cat: "rice", price:350 , was: 380, serves: 1, img: "Daal Chawal.jpg", tag: "BESTSELLER", hot: true, desc: "The ultimate comfort plate — tarka daal poured over hot white rice." },
-    { id: "d21", name: "Chicken Biryani", cat: "rice", price: 350, was: 520, serves: 1, img: "Chicken Biryani.png", tag: "", hot: true, desc: "Basmati layered with masala chicken, kewra, aloo and fried onion." },
+    { id: "d21", name: "Chicken Biryani", cat: "rice", price: 350, was: 520, serves: 1, img: "chicken biryani.png", tag: "", hot: true, desc: "Basmati layered with masala chicken, kewra, aloo and fried onion." },
 
     /* --- SIDES & RAITA --- */
     { id: "d22", name: "Egg Kharaiza (Khagina)", cat: "sides", price: 300, serves: 1, img: "khagina.png", tag: "NEW", desc: "Desi scrambled eggs with tomato, onion and green chilli — breakfast any time." },
@@ -54,7 +54,12 @@
     { id: "d30", name: "Mango Milk Shake", cat: "drinks", price:250 , was: 260, serves: 1, img: "mango.png", tag: "NEW", hot: true, desc: "Thick shake blended with fresh Sindhri mango pulp and chilled milk." },
 
     /* --- DESSERT --- */
-    { id: "d31", name: "Shahi Kheer", cat: "dessert", price: 180, serves: 2, img: "kheer.png", tag: "", desc: "Slow-reduced rice pudding with cardamom, pistachio and almond flakes." }
+    { id: "d31", name: "Shahi Kheer", cat: "dessert", price: 180, serves: 2, img: "kheer.png", tag: "", desc: "Slow-reduced rice pudding with cardamom, pistachio and almond flakes." },
+
+    /* --- BANNER DEALS --- */
+    { id: "d33", name: "2 Person Deal", cat: "deals", price: 799, was: 1100, serves: 2, img: "karahi.jpg", tag: "WOW DEAL", hot: true, desc: "From our Wow Deals banner — a full meal for two with karahi-style mains." },
+    { id: "d34", name: "Family Deal", cat: "deals", price: 999, was: 1450, serves: 4, img: "chicken biryani.png", tag: "WOW DEAL", hot: true, desc: "Family platter from the banner — biryani, salan and breads to share." },
+    { id: "d35", name: "1.5L Cold Drink", cat: "drinks", price: 250, serves: 4, img: "pepsi.avif", tag: "", desc: "1.5 litre chilled bottle, as listed on the Wow Deals banner." }
   ];
 
   const CATEGORIES = [
@@ -76,14 +81,16 @@
   ];
 
 
+  const BANNER_FEATURED = ["d21", "d33", "d34", "d20", "d17", "d16", "d1", "d9", "d32", "d27", "d28", "d35"];
+
   const WEEK = [
-    { day: "Monday", meals: [["Chicken Biryani", 450], ["Daal Chawal", 280], ["Bhindi Gosht", 640]] },
-    { day: "Tuesday", meals: [["Mutton Pulao", 780], ["Chicken Handi", 720], ["Mix Sabzi", 300]] },
-    { day: "Wednesday", meals: [["Chicken Karahi", 850], ["Chana Daal Gosht", 660], ["Vegetable Rice", 290]] },
-    { day: "Thursday", meals: [["Beef Nihari", 700], ["Aloo Tahari", 300], ["Chicken Aloo Salan", 560]] },
-    { day: "Friday", meals: [["Special Deal: Chicken Biryani + Salad + Raita + Cold Drink", 1450], ["Chicken Macaroni", 350], ["Channay Ka Salan", 280]] },
-    { day: "Saturday", meals: [["Chicken Karahi", 850], ["Lauki Ki Bhujiya", 260], ["Arvi Gosht", 640]] },
-    { day: "Sunday", meals: [["Aloo Ka Paratha", 200], ["Piyaz Karela", 280], ["Chicken Qourma", 690]] }
+    { day: "Monday", ids: ["d21", "d20", "d8"] },
+    { day: "Tuesday", ids: ["d9", "d5", "d27"] },
+    { day: "Wednesday", ids: ["d17", "d11", "d19"] },
+    { day: "Thursday", ids: ["d16", "d7", "d32"] },
+    { day: "Friday", ids: ["d1", "d13", "d28"] },
+    { day: "Saturday", ids: ["d12", "d4", "d23"] },
+    { day: "Sunday", ids: ["d10", "d6", "d31"] }
   ];
 
   const BLOG = [
@@ -263,7 +270,8 @@
     { file: "catering.html", label: "Catering", icon: "fa-champagne-glasses" },
     { file: "location.html", label: "Location", icon: "fa-location-dot" },
     { file: "blog.html", label: "Kitchen Journal", icon: "fa-newspaper" },
-    { file: "contact.html", label: "Contact", icon: "fa-headset" }
+    { file: "contact.html", label: "Contact", icon: "fa-headset" },
+    { file: "reviews.html", label: "Reviews", icon: "fa-star" }
   ];
 
   // Icons kept on the always-visible side rail
@@ -554,7 +562,20 @@
     $("kqLocBtn") && $("kqLocBtn").addEventListener("click", openLocation);
     $("kqCheckoutBtn") && $("kqCheckoutBtn").addEventListener("click", () => {
       if (!state.cart.length) return toast("Your basket is empty", "fa-basket-shopping");
+      if (!requireSignIn("Please sign in to confirm your order")) {
+        pendingCheckout = true;
+        return;
+      }
       location.href = "checkout.html";
+    });
+
+    document.addEventListener("click", (e) => {
+      const link = e.target.closest('a[href="checkout.html"]');
+      if (!link) return;
+      if (state.user) return;
+      e.preventDefault();
+      pendingCheckout = true;
+      requireSignIn("Please sign in to confirm your order");
     });
 
     // delegated add-to-cart / customize
@@ -569,18 +590,23 @@
   }
 
   function applyTheme() {
-    document.documentElement.setAttribute("data-theme", state.theme);
+    const t = state.theme === "dark" ? "dark" : "light";
+    document.documentElement.setAttribute("data-theme", t);
+    document.documentElement.style.colorScheme = t;
+    if (document.body) document.body.setAttribute("data-theme", t);
     const btn = document.querySelector("#kqThemeBtn i");
-    if (btn) btn.className = state.theme === "dark" ? "fa-solid fa-sun" : "fa-solid fa-moon";
+    if (btn) btn.className = t === "dark" ? "fa-solid fa-sun" : "fa-solid fa-moon";
     const card = document.getElementById("kqDrawerTheme");
     if (card) {
-      card.classList.toggle("on", state.theme === "dark");
+      card.classList.toggle("on", t === "dark");
       const lbl = document.getElementById("kqModeState");
-      if (lbl) lbl.textContent = state.theme === "dark" ? "ENABLED" : "DISABLED";
+      if (lbl) lbl.textContent = t === "dark" ? "ENABLED" : "DISABLED";
       const ico = card.querySelector(".kq-mode-ico i");
-      if (ico) ico.className = state.theme === "dark" ? "fa-solid fa-moon" : "fa-solid fa-sun";
+      if (ico) ico.className = t === "dark" ? "fa-solid fa-moon" : "fa-solid fa-sun";
     }
   }
+  document.documentElement.setAttribute("data-theme", state.theme === "dark" ? "dark" : "light");
+  document.documentElement.style.colorScheme = state.theme === "dark" ? "dark" : "light";
 
   /* ---------------- 3b. AUTH (sign in + OTP) ---------------- */
   function renderUserUI() {
@@ -597,6 +623,7 @@
     LS.set("user", null);
     renderUserUI();
     toast("Signed out", "fa-right-from-bracket");
+    document.dispatchEvent(new CustomEvent("kq:auth"));
   }
 
   let otpTimer = null;
@@ -610,7 +637,7 @@
       <p class="kq-auth-sub">Returning users can continue with phone only.<br>New users should add name and email.</p>
       <div class="kq-auth-field">
         <label>FULL NAME</label>
-        <div class="kq-auth-input"><i class="fa-solid fa-user"></i><input type="text" id="kqAuthName" placeholder="e.g. Muhammad Sami Khan" value="${esc(p.name || "")}"></div>
+        <div class="kq-auth-input"><i class="fa-solid fa-user"></i><input type="text" id="kqAuthName" placeholder="e.g. John Doe" value="${esc(p.name || "")}"></div>
       </div>
       <div class="kq-auth-field">
         <label>EMAIL</label>
@@ -710,6 +737,12 @@
       const inline = document.getElementById("kqAuthInline");
       if (inline) { renderSignedIn(inline); } else { KQ.closeAll(); }
       toast("Welcome, " + data.name.split(" ")[0] + "!", "fa-check", "success");
+      document.dispatchEvent(new CustomEvent("kq:auth"));
+      if (pendingCheckout && !/checkout\.html$/i.test(location.pathname)) {
+        pendingCheckout = false;
+        try { sessionStorage.removeItem("kq_pending_checkout"); } catch (err) {}
+        location.href = "checkout.html";
+      }
     });
   }
 
@@ -730,12 +763,33 @@
   function openAuth() {
     const modal = document.getElementById("kqAuthModal");
     const box = document.getElementById("kqAuthBox");
-    if (!modal || !box) { location.href = "signin.html"; return; }
+    if (!modal || !box) {
+      try { sessionStorage.setItem("kq_pending_checkout", pendingCheckout ? "1" : ""); } catch (err) {}
+      location.href = "signin.html";
+      return;
+    }
     if (state.user) renderSignedIn(box);
     else authStepOne(box, {});
     box.querySelectorAll("[data-auth-close]").forEach((b) => b.addEventListener("click", () => KQ.closeAll()));
     KQ.open(modal);
   }
+
+  let pendingCheckout = false;
+  try { pendingCheckout = sessionStorage.getItem("kq_pending_checkout") === "1"; } catch (err) {}
+
+  function requireSignIn(msg) {
+    if (state.user) return true;
+    toast(msg || "Please sign in to confirm your order", "fa-right-to-bracket");
+    openAuth();
+    return false;
+  }
+
+  document.addEventListener("kq:auth", () => {
+    if (!state.user || !pendingCheckout) return;
+    pendingCheckout = false;
+    try { sessionStorage.removeItem("kq_pending_checkout"); } catch (err) {}
+    if (!/checkout\.html$/i.test(location.pathname)) location.href = "checkout.html";
+  });
 
   /* ---------------- 4. TOASTS ---------------- */
   function toast(msg, icon, cls) {
@@ -1098,6 +1152,10 @@
           return d.cat === active;
         }).map(dishCard).join("");
       };
+      const bannerGrid = document.getElementById("kqBannerGrid");
+      if (bannerGrid) {
+        bannerGrid.innerHTML = BANNER_FEATURED.map((id) => dish(id)).filter(Boolean).map(dishCard).join("");
+      }
       const hero = document.getElementById("heroCarousel");
       if (hero && window.bootstrap) {
         bootstrap.Carousel.getOrCreateInstance(hero, { interval: 4000, ride: "carousel", wrap: true, pause: "hover" });
@@ -1119,23 +1177,53 @@
       const wrap = document.getElementById("kqWeek");
       if (!wrap) return;
       const today = new Date().toLocaleDateString("en-US", { weekday: "long" });
-      wrap.innerHTML = WEEK.map((w) => `
-        <div class="kq-day-card" style="margin-bottom:18px">
-          <div class="kq-day-head"><span><i class="fa-solid fa-calendar-day"></i> ${w.day.toUpperCase()}</span>${w.day === today ? "<span>TODAY</span>" : ""}</div>
-          <div class="kq-day-body">
-            ${w.meals.map((m, i) => `
-              <div class="kq-meal">
-                <div class="meal-slot">${["MAIN COURSE", "SIDE / RICE", "SALAN"][i] || "SPECIAL"}</div>
-                <div class="kq-meal-flex">
-                  <div>
-                    <p class="meal-name">${esc(m[0])}</p>
-                    <p class="meal-desc">Freshly cooked on ${w.day} &middot; serves 2–3</p>
-                  </div>
-                  <span class="meal-price">${money(m[1])}</span>
+      const slots = ["MAIN", "SECOND", "SIDE"];
+      wrap.innerHTML = `
+        <article class="kq-brochure">
+          <header class="kq-brochure-cover">
+            <div>
+              <span class="kq-brochure-kicker"><i class="fa-solid fa-crown"></i> KITCHEN QUEEN · KARACHI</span>
+              <h1>Weekly Menu Brochure</h1>
+              <p>Seven days of ghar ka khana — the same plates, photos and prices as the website. Cooked in the morning, delivered hot.</p>
+              <button class="kq-btn kq-btn-outline kq-brochure-print" id="kqPrint" type="button"><i class="fa-solid fa-print"></i> Print Brochure</button>
+            </div>
+            <div class="kq-brochure-cover-meta">
+              <b>This week</b>
+              <span>${new Date().toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" })}</span>
+              <small>North Nazimabad · 12PM – 12AM</small>
+            </div>
+          </header>
+          <div class="kq-brochure-days">
+            ${WEEK.map((w) => {
+              const meals = (w.ids || []).map((id) => dish(id)).filter(Boolean);
+              return `<section class="kq-brochure-day${w.day === today ? " is-today" : ""}">
+                <div class="kq-brochure-dayname">
+                  <span>${w.day.slice(0, 3).toUpperCase()}</span>
+                  <b>${w.day}</b>
+                  ${w.day === today ? "<em>TODAY</em>" : ""}
                 </div>
-              </div>`).join("")}
+                <div class="kq-brochure-meals">
+                  ${meals.map((m, i) => `
+                    <article class="kq-brochure-meal">
+                      <div class="kq-brochure-photo">
+                        <img src="${IMG + m.img}" alt="${esc(m.name)}">
+                        <span>${slots[i] || "PLATE"}</span>
+                      </div>
+                      <div class="kq-brochure-info">
+                        <h3>${esc(m.name)}</h3>
+                        <p>${esc(m.desc)}</p>
+                        <div class="kq-brochure-foot">
+                          <strong>${money(m.price)}</strong>
+                          <button type="button" class="kq-add-btn" data-add="${m.id}" aria-label="Add ${esc(m.name)}"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                      </div>
+                    </article>`).join("")}
+                </div>
+              </section>`;
+            }).join("")}
           </div>
-        </div>`).join("");
+          <footer class="kq-brochure-end">Prices match the live Kitchen Queen menu · Call 0336-2465676</footer>
+        </article>`;
       const printBtn = document.getElementById("kqPrint");
       if (printBtn) printBtn.addEventListener("click", () => window.print());
     },
@@ -1403,20 +1491,65 @@
         if (epBox) epBox.hidden = selectedPay !== "easypaisa";
       }));
       const outlet = document.getElementById("kqOutletTag");
-      if (outlet && state.address) outlet.textContent = (state.address.area || "KARACHI").toUpperCase();
-      if (state.user) {
-        const n = form.querySelector("#fullname");
-        const ph = form.querySelector("#phone");
-        if (n && !n.value) n.value = state.user.name || "";
-        if (ph && !ph.value) ph.value = state.user.phone || "";
+      const aptInput = form.querySelector("#apt");
+      const streetInput = form.querySelector("#street");
+      const addrHidden = form.querySelector("#address");
+
+      const fillAddressFields = () => {
+        if (outlet) outlet.textContent = ((state.address && state.address.area) || "KARACHI").toUpperCase();
+        if (state.address) {
+          const detail = state.address.detail || "";
+          if (aptInput && !aptInput.value) {
+            const parts = detail.split(",");
+            if (parts.length > 1) {
+              aptInput.value = parts[0].trim();
+              if (streetInput && !streetInput.value) streetInput.value = parts.slice(1).join(",").trim();
+            } else if (streetInput && !streetInput.value) {
+              streetInput.value = detail;
+            }
+          }
+          if (addrHidden) {
+            const apt = (aptInput && aptInput.value.trim()) || "";
+            const street = (streetInput && streetInput.value.trim()) || detail;
+            const area = state.address.area || "Karachi";
+            addrHidden.value = [apt, street, area].filter(Boolean).join(", ");
+          }
+        } else if (addrHidden) {
+          addrHidden.value = "";
+        }
+      };
+      fillAddressFields();
+      document.addEventListener("kq:address", fillAddressFields);
+
+      const editMap = document.getElementById("kqEditMap");
+      const mapBar = document.getElementById("kqMapBar");
+      if (editMap) editMap.addEventListener("click", () => openLocation());
+      if (mapBar) {
+        mapBar.addEventListener("click", () => openLocation());
+        mapBar.addEventListener("keydown", (ev) => {
+          if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); openLocation(); }
+        });
       }
 
-      const addrInput = form.querySelector("#address");
-      if (state.address) addrInput.value = (state.address.detail ? state.address.detail + ", " : "") + state.address.area;
+      const fillUserFields = () => {
+        if (!state.user) return;
+        const n = form.querySelector("#fullname");
+        const ph = form.querySelector("#phone");
+        const em = form.querySelector("#email");
+        if (n && !n.value) n.value = state.user.name || "";
+        if (ph && !ph.value) ph.value = state.user.phone || "";
+        if (em && !em.value) em.value = state.user.email || "";
+      };
+      fillUserFields();
+      document.addEventListener("kq:auth", fillUserFields);
 
       form.addEventListener("submit", (e) => {
         e.preventDefault();
         if (!state.cart.length) return toast("Your basket is empty", "fa-basket-shopping");
+        if (!state.user) {
+          pendingCheckout = true;
+          return requireSignIn("Please sign in to confirm your order");
+        }
         if (!validate(form)) return;
         if (selectedPay === "easypaisa") {
           if (!epSlipData) {
@@ -1432,7 +1565,12 @@
         const orderNo = "KQ-" + Math.floor(100000 + Math.random() * 899999);
         const name = form.querySelector("#fullname").value.trim();
         const phone = form.querySelector("#phone").value.trim();
-        const address = form.querySelector("#address").value.trim();
+        const apt = form.querySelector("#apt")?.value.trim() || "";
+        const street = form.querySelector("#street")?.value.trim() || "";
+        const area = (state.address && state.address.area) || "Karachi";
+        const address = [apt, street, area].filter(Boolean).join(", ");
+        const hiddenAddr = form.querySelector("#address");
+        if (hiddenAddr) hiddenAddr.value = address;
         const note = form.querySelector("#note")?.value.trim() || "";
         const payLabel = selectedPay === "easypaisa" ? "EasyPaisa" : "Cash on Delivery";
         const pending = selectedPay === "easypaisa";
@@ -1513,6 +1651,10 @@
           persistCart();
           draw();
           if (actions) actions.hidden = false;
+          const nudge = document.getElementById("kqReviewNudge");
+          const nudgeLink = document.getElementById("kqReviewNudgeLink");
+          if (nudge) nudge.hidden = false;
+          if (nudgeLink) nudgeLink.href = "reviews.html?order=" + encodeURIComponent(orderNo);
         }, 2600);
       }
 
@@ -1527,6 +1669,8 @@
           const stage = document.getElementById("kqReceiptStage");
           stage.hidden = true;
           document.getElementById("kqReceiptActions").hidden = true;
+          const nudgeOff = document.getElementById("kqReviewNudge");
+          if (nudgeOff) nudgeOff.hidden = true;
           const badge = document.getElementById("kqPrintStatus");
           badge.classList.remove("done");
           badge.querySelector("span").innerHTML = `PRINTING ORDER <b id="kqOrderNo">KQ-000000</b> · <b id="kqPrintTotal">Rs 0</b>`;
@@ -1583,6 +1727,233 @@
       document.addEventListener("kq:address", show);
       const list = document.getElementById("kqZones");
       if (list) list.innerHTML = AREAS.map((a) => `<div class="kq-info-row"><span class="ico"><i class="fa-solid fa-location-crosshairs"></i></span><span><b>${a}</b><span>35–50 min &middot; ${money(DELIVERY_FEE)} delivery (free over ${money(FREE_DELIVERY_OVER)})</span></span></div>`).join("");
+    },
+
+    reviews() {
+      const SEED = [
+        { id: "s1", name: "Ali Raza", orderId: "KQ-184392", dish: "Chicken Biryani", img: "chicken biryani.png", rating: 5, text: "Basmati was separate, chicken was juicy and the aroma filled the whole house. Packing was neat too.", photos: ["images/chicken biryani.png"], date: Date.now() - 86400000 * 2, reply: "Shukriya Ali! Aapko biryani pasand aai, agli baar zaroor dobara order kijiyega!" },
+        { id: "s2", name: "Ayesha Khan", orderId: "KQ-176201", dish: "Chicken Karahi", img: "karahi.jpg", rating: 5, text: "Karahi tasted like ghar ki handi — tomato, ginger and just the right heat. Will order again this Friday.", photos: ["images/karahi.jpg"], date: Date.now() - 86400000 * 4, reply: "Shukriya Ayesha! Karahi hamari chef special hai — next time family size try karna." },
+        { id: "s3", name: "Bilal Ahmed", orderId: "KQ-169884", dish: "Beef Haleem", img: "beef haleem.png", rating: 4, text: "Haleem was silky and rich. Could have used a little more fried onion on top, but flavour was on point.", photos: [], date: Date.now() - 86400000 * 6, reply: null },
+        { id: "s4", name: "Hina Saeed", orderId: "KQ-158440", dish: "Daal Chawal", img: "Daal Chawal.jpg", rating: 5, text: "Simple comfort food done properly. Tarka smelled amazing when I opened the box.", photos: ["images/Daal Chawal.jpg"], date: Date.now() - 86400000 * 8, reply: "Shukriya Hina! Daal chawal roz fresh tarka ke sath nikalta hai." },
+        { id: "s5", name: "Usman Malik", orderId: "KQ-149102", dish: "Friday Family Deal", img: "chicken biryani.png", rating: 5, text: "Fed four people easily. Biryani, raita and drink — solid value and everything arrived hot.", photos: [], date: Date.now() - 86400000 * 11, reply: null },
+        { id: "s6", name: "Sana Qureshi", orderId: "KQ-141773", dish: "Shahi Kheer", img: "kheer.png", rating: 4, text: "Kheer was creamy and not too sweet. Small portion for the price but quality is there.", photos: ["images/kheer.png"], date: Date.now() - 86400000 * 13, reply: null },
+        { id: "s7", name: "Zain Ali", orderId: "KQ-132019", dish: "Chicken Qourma", img: "chicken qourma.png", rating: 3, text: "Taste was good but the gravy was a bit oily for my liking. Sharing a photo of the box as received.", photos: ["images/chicken qourma.png"], date: Date.now() - 86400000 * 16, reply: "Zain bhai shukriya feedback ka — gravy ko lighter rakhne ki instruction note kar li hai kitchen ne." },
+        { id: "s8", name: "Faryal Noor", orderId: "KQ-120556", dish: "Yellow Daal chawal with 1 Shami", img: "Yellow daal.png", rating: 5, text: "The shami was soft and the daal had a proper ghee tarka. This is the plate I grew up with.", photos: [], date: Date.now() - 86400000 * 19, reply: "Shukriya Faryal! Yeh combination hamara bestseller hai for a reason." }
+      ];
+
+      const form = document.getElementById("kqReviewForm");
+      const listEl = document.getElementById("kqRvList");
+      if (!form || !listEl) return;
+
+      const dishSel = document.getElementById("rvDish");
+      const dishFilter = document.getElementById("kqRvDishFilter");
+      DISHES.forEach((d) => {
+        const o1 = document.createElement("option");
+        o1.value = d.name; o1.textContent = d.name; dishSel.appendChild(o1);
+        const o2 = document.createElement("option");
+        o2.value = d.name; o2.textContent = d.name; dishFilter.appendChild(o2);
+      });
+
+      let rating = 0;
+      let photos = [];
+      const starWrap = document.getElementById("kqRvStars");
+      const paintStars = (n, cls) => {
+        starWrap.querySelectorAll(".rv-star-btn").forEach((b) => {
+          b.classList.toggle(cls, Number(b.dataset.star) <= n);
+        });
+      };
+      starWrap.querySelectorAll(".rv-star-btn").forEach((b) => {
+        b.addEventListener("mouseenter", () => paintStars(Number(b.dataset.star), "hover"));
+        b.addEventListener("mouseleave", () => paintStars(0, "hover"));
+        b.addEventListener("click", () => {
+          rating = Number(b.dataset.star);
+          document.getElementById("rvRating").value = String(rating);
+          form.classList.remove("rv-need-stars");
+          paintStars(rating, "on");
+        });
+      });
+
+      const compress = (file) => new Promise((resolve) => {
+        if (!file || !/^image\//.test(file.type)) return resolve("");
+        const img = new Image();
+        const url = URL.createObjectURL(file);
+        img.onload = () => {
+          const max = 720;
+          let w = img.width, h = img.height;
+          if (w > max || h > max) {
+            const r = Math.min(max / w, max / h);
+            w = Math.round(w * r); h = Math.round(h * r);
+          }
+          const c = document.createElement("canvas");
+          c.width = w; c.height = h;
+          c.getContext("2d").drawImage(img, 0, 0, w, h);
+          URL.revokeObjectURL(url);
+          resolve(c.toDataURL("image/jpeg", 0.7));
+        };
+        img.onerror = () => { URL.revokeObjectURL(url); resolve(""); };
+        img.src = url;
+      });
+
+      const prev = document.getElementById("rvPreviews");
+      document.getElementById("rvPhotos").addEventListener("change", async (e) => {
+        const files = Array.from(e.target.files || []).slice(0, 3);
+        photos = [];
+        prev.innerHTML = "";
+        for (const f of files) {
+          const data = await compress(f);
+          if (!data) continue;
+          photos.push(data);
+          const im = document.createElement("img");
+          im.src = data; im.alt = "Upload preview";
+          prev.appendChild(im);
+        }
+      });
+
+      const allReviews = () => SEED.concat(LS.get("reviews", []));
+
+      const ago = (ts) => {
+        const d = Math.max(0, Math.round((Date.now() - ts) / 86400000));
+        if (d <= 0) return "Today";
+        if (d === 1) return "Yesterday";
+        if (d < 30) return d + " days ago";
+        return new Date(ts).toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" });
+      };
+
+      const starsHtml = (n) => Array.from({ length: 5 }, (_, i) => `<i class="fa-${i < n ? "solid" : "regular"} fa-star"></i>`).join("");
+
+      const syncHero = (rows) => {
+        const n = rows.length;
+        const avg = n ? rows.reduce((s, r) => s + r.rating, 0) / n : 0;
+        document.getElementById("kqRvScore").textContent = avg.toFixed(1);
+        document.getElementById("kqRvScoreStars").innerHTML = starsHtml(Math.round(avg));
+        document.getElementById("kqRvCount").textContent = "Based on " + Math.max(120, n) + "+ orders";
+        const bars = [5, 4, 3, 2, 1].map((star) => {
+          const c = rows.filter((r) => r.rating === star).length;
+          const pct = n ? Math.round((c / n) * 100) : 0;
+          return `<div class="rv-bar-row"><span>${star} ★</span><div class="rv-bar-track"><div class="rv-bar-fill" style="width:${pct}%"></div></div><span>${pct}%</span></div>`;
+        }).join("");
+        document.getElementById("kqRvBars").innerHTML = bars;
+      };
+
+      const lightbox = document.getElementById("kqRvLightbox");
+      const openPhoto = (src) => {
+        lightbox.querySelector("img").src = src;
+        lightbox.hidden = false;
+      };
+      document.getElementById("kqRvLightClose").addEventListener("click", () => { lightbox.hidden = true; });
+      lightbox.addEventListener("click", (e) => { if (e.target === lightbox) lightbox.hidden = true; });
+
+      const draw = () => {
+        const sort = document.getElementById("kqRvSort").value;
+        const dish = document.getElementById("kqRvDishFilter").value;
+        const photosOnly = document.getElementById("kqRvPhotosOnly").checked;
+        let rows = allReviews().slice();
+        syncHero(rows);
+        if (dish) rows = rows.filter((r) => r.dish === dish);
+        if (photosOnly) rows = rows.filter((r) => r.photos && r.photos.length);
+        rows.sort((a, b) => {
+          if (sort === "high") return b.rating - a.rating || b.date - a.date;
+          if (sort === "low") return a.rating - b.rating || b.date - a.date;
+          return b.date - a.date;
+        });
+        document.getElementById("kqRvShowing").textContent = rows.length + " review" + (rows.length === 1 ? "" : "s");
+        if (!rows.length) {
+          listEl.innerHTML = `<div class="rv-empty"><i class="fa-regular fa-comments"></i><p>No reviews match these filters yet.</p></div>`;
+          return;
+        }
+        listEl.innerHTML = rows.map((r) => `
+          <article class="rv-card">
+            <div class="rv-card-top">
+              <div class="rv-avatar">${esc((r.name || "?").charAt(0).toUpperCase())}</div>
+              <div class="rv-who">
+                <b>${esc(r.name)}</b>
+                <div class="rv-meta">
+                  <span class="rv-verified"><i class="fa-solid fa-circle-check"></i> Verified Buyer</span>
+                  <span class="rv-stars-inline">${starsHtml(r.rating)}</span>
+                  <span>${ago(r.date)}</span>
+                  <span class="rv-oid">${esc(r.orderId)}</span>
+                </div>
+                <div class="rv-order-tag">
+                  <img src="${IMG + (r.img || "chicken biryani.png")}" alt="">
+                  Ordered: ${esc(r.dish)}
+                </div>
+              </div>
+            </div>
+            <p class="rv-body">${esc(r.text)}</p>
+            ${r.photos && r.photos.length ? `<div class="rv-photos">${r.photos.map((p) => `<button type="button" data-photo="${esc(p)}"><img src="${p}" alt="Customer photo"></button>`).join("")}</div>` : ""}
+            ${r.reply ? `<div class="rv-reply"><small>KITCHEN QUEEN</small><p>${esc(r.reply)}</p></div>` : ""}
+          </article>`).join("");
+        listEl.querySelectorAll("[data-photo]").forEach((b) => b.addEventListener("click", () => openPhoto(b.dataset.photo)));
+      };
+
+      ["kqRvSort", "kqRvDishFilter", "kqRvPhotosOnly"].forEach((id) => {
+        document.getElementById(id).addEventListener("change", draw);
+      });
+
+      const syncGate = () => {
+        const gate = document.getElementById("kqReviewGate");
+        const signed = !!state.user;
+        gate.hidden = signed;
+        form.querySelectorAll("input, textarea, select, button").forEach((el) => {
+          if (el.id === "kqRvSignIn") return;
+          el.disabled = !signed;
+        });
+        if (signed) {
+          const n = document.getElementById("rvName");
+          if (n) {
+            n.value = state.user.name || n.value;
+            n.readOnly = true;
+          }
+          try {
+            const q = new URLSearchParams(location.search).get("order");
+            const last = JSON.parse(localStorage.getItem("kq_last_order") || "null");
+            const oid = document.getElementById("rvOrder");
+            if (oid && !oid.value) oid.value = q || (last && last.orderNo) || "";
+          } catch (e) {}
+        }
+      };
+
+      document.getElementById("kqRvSignIn").addEventListener("click", () => openAuth());
+      document.addEventListener("kq:auth", syncGate);
+      syncGate();
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        if (!state.user) return openAuth();
+        if (!rating) {
+          form.classList.add("rv-need-stars");
+          return toast("Please tap a star rating", "fa-star");
+        }
+        if (!validate(form)) return;
+        const dishName = dishSel.value;
+        const d = DISHES.find((x) => x.name === dishName);
+        const rec = {
+          id: "u" + Date.now(),
+          name: document.getElementById("rvName").value.trim(),
+          orderId: document.getElementById("rvOrder").value.trim(),
+          dish: dishName,
+          img: d ? d.img : "chicken biryani.png",
+          rating,
+          text: document.getElementById("rvText").value.trim(),
+          photos: photos.slice(),
+          date: Date.now(),
+          reply: null
+        };
+        const saved = LS.get("reviews", []);
+        saved.push(rec);
+        LS.set("reviews", saved);
+        form.reset();
+        rating = 0;
+        photos = [];
+        paintStars(0, "on");
+        prev.innerHTML = "";
+        document.getElementById("rvRating").value = "";
+        if (state.user) document.getElementById("rvName").value = state.user.name || "";
+        toast("Review submitted — shukriya!", "fa-check", "success");
+        draw();
+      });
+
+      draw();
     }
   };
 
