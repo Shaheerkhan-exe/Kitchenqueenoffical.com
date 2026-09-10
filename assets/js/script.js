@@ -37,7 +37,7 @@
     /* --- RICE --- */
     { id: "d19", name: "White Rice", cat: "rice", price: 250, serves: 1, img: "plain-white-rice.jpg", tag: "", desc: "Steamed long-grain basmati, separated grain by grain." },
     { id: "d20", name: "Daal Chawal", cat: "rice", price:350 , was: 380, serves: 1, img: "Daal Chawal.jpg", tag: "BESTSELLER", hot: true, desc: "The ultimate comfort plate — tarka daal poured over hot white rice." },
-    { id: "d21", name: "Chicken Biryani", cat: "rice", price: 350, was: 520, serves: 1, img: "chicken chana.png", tag: "", hot: true, desc: "Basmati layered with masala chicken, kewra, aloo and fried onion." },
+    { id: "d21", name: "Chicken Biryani", cat: "rice", price: 350, was: 520, serves: 1, img: "chicken biryani.png", tag: "", hot: true, desc: "Basmati layered with masala chicken, kewra, aloo and fried onion." },
 
     /* --- SIDES & RAITA --- */
     { id: "d22", name: "Egg Kharaiza (Khagina)", cat: "sides", price: 300, serves: 1, img: "khagina.png", tag: "NEW", desc: "Desi scrambled eggs with tomato, onion and green chilli — breakfast any time." },
