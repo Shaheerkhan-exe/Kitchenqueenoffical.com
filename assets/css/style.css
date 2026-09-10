@@ -3241,3 +3241,191 @@ body.kq-checkout-page .kq-page-sub { display: none; }
 [data-theme="dark"] .form-control,
 [data-theme="dark"] .form-select { background-color: var(--bg-soft); color: var(--text); border-color: var(--border); }
 
+/* ==========================================================================
+   COMPACT 80mm THERMAL RECEIPT + SERVES ON CUSTOMIZER ONLY
+   ========================================================================== */
+.kq-card-body > .kq-serve-pill { display: none !important; }
+
+.kq-cust-left .kq-serve-pill {
+  display: inline-flex;
+  margin: 8px 0 10px;
+}
+
+.kq-receipt-stage {
+  max-width: 302px;
+  width: 302px;
+  margin: 28px auto 40px;
+}
+
+.kq-printer {
+  display: block;
+  background: #111;
+  color: #fff;
+  border-radius: 16px 16px 8px 8px;
+  padding: 12px 12px 0;
+  box-shadow: 0 16px 40px rgba(0,0,0,.22);
+  border-bottom: 0;
+}
+
+.kq-printer-head {
+  padding: 2px 4px 10px;
+}
+
+.kq-print-status {
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  color: #f3c94a;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kq-print-status.done { color: #6ee7a2; }
+.kq-print-status .kq-live-dot { margin: 0; color: inherit; }
+
+.kq-printer-slot {
+  height: 8px;
+  margin: 8px -4px 0;
+  border-radius: 4px;
+  background: #000;
+  box-shadow: inset 0 2px 0 rgba(255,255,255,.08);
+}
+
+.kq-paper-mask {
+  overflow: hidden;
+  padding: 0 10px 10px;
+  margin: 0;
+}
+
+.kq-paper {
+  width: 100%;
+  max-width: 280px;
+  margin: 0 auto;
+  background: #fff;
+  color: #111;
+  font-family: "Roboto Mono", "Courier New", ui-monospace, monospace;
+  font-size: 11px;
+  line-height: 1.35;
+  padding: 10px 12px 0;
+  border-radius: 0;
+  transform: translateY(-102%);
+  box-shadow: 0 8px 18px rgba(0,0,0,.12);
+}
+
+.kq-paper.print-run { animation: paperOut 1.4s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
+
+.kq-paper .r-head {
+  text-align: center;
+  padding: 2px 0 8px;
+}
+.kq-paper .r-brand {
+  font-weight: 800;
+  letter-spacing: 2px;
+  font-size: 12px;
+}
+.kq-paper .r-sub {
+  font-size: 9px;
+  color: #666;
+}
+.kq-paper .r-title {
+  margin-top: 6px;
+  font-weight: 800;
+  letter-spacing: 1.6px;
+  font-size: 12px;
+}
+.kq-paper .r-status {
+  display: inline-block;
+  margin-top: 5px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  background: transparent;
+  color: #146c36;
+  padding: 0;
+  border-radius: 0;
+}
+.kq-paper .r-status.wait { color: #b45309; background: transparent; }
+.kq-paper .r-status.ok { color: #146c36; background: transparent; }
+
+.kq-paper .r-hero { display: none; }
+
+.kq-paper .r-body { padding: 0 0 6px; }
+.kq-paper .r-divider { border-top: 1px dashed #999; margin: 6px 0; }
+.kq-paper .r-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 11px;
+  margin: 2px 0;
+}
+.kq-paper .r-row .r-qty { flex: 0 0 22px; font-weight: 700; }
+.kq-paper .r-row .r-name { flex: 1; }
+.kq-paper .r-meta { color: #666; font-size: 9px; }
+.kq-paper .r-right { text-align: right; max-width: 62%; }
+.kq-paper .r-total-row {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 800;
+  font-size: 13px;
+  margin-top: 4px;
+  padding-top: 6px;
+  border-top: 1px dashed #999;
+}
+.kq-paper .r-pay { display: none; }
+.kq-paper .r-thanks {
+  text-align: center;
+  font-size: 11px;
+  line-height: 1.35;
+  margin: 8px 0 4px;
+}
+.kq-paper .r-center { text-align: center; font-size: 10px; margin: 2px 0; }
+.kq-paper .r-footer-note { text-align: center; font-size: 10px; color: #555; margin: 2px 0 6px; }
+.kq-paper .r-slip { margin: 6px 0; }
+.kq-paper .r-slip img { width: 100%; max-height: 88px; object-fit: contain; border-radius: 4px; border: 1px solid #ddd; background: #fff; }
+.kq-paper .r-barcode {
+  height: 34px;
+  margin: 8px 8px 4px;
+  background: repeating-linear-gradient(90deg,
+    #111 0 2px, transparent 2px 4px,
+    #111 4px 7px, transparent 7px 9px,
+    #111 9px 10px, transparent 10px 13px,
+    #111 13px 16px, transparent 16px 18px);
+}
+.kq-paper .r-zigzag {
+  height: 10px;
+  margin: 0 -12px;
+  background:
+    linear-gradient(to bottom right, #fff 50%, transparent 50.5%) 0 0 / 12px 10px repeat-x,
+    linear-gradient(to bottom left, #fff 50%, transparent 50.5%) 6px 0 / 12px 10px repeat-x;
+}
+
+.kq-receipt-actions {
+  max-width: 302px;
+  margin: 14px auto 0;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.kq-receipt-actions .kq-btn { padding: 8px 12px; font-size: .78rem; }
+.kq-review-nudge { max-width: 302px; }
+
+@media (max-width: 767px) {
+  .kq-receipt-stage { max-width: 302px; width: min(302px, 92vw); margin: 16px auto 72px; }
+  .kq-printer { padding: 10px 10px 0; }
+  .kq-paper-mask { padding: 0 8px 8px; }
+  .kq-paper { font-size: 11px; padding: 10px 10px 0; }
+  .kq-receipt-actions, .kq-review-nudge { max-width: 302px; }
+}
+
+@media (min-width: 768px) {
+  .kq-receipt-stage { max-width: 302px; }
+  .kq-printer { padding: 12px 12px 0; border-radius: 16px 16px 8px 8px; }
+  .kq-paper-mask { padding: 0 10px 10px; }
+  .kq-paper { font-size: 11px; padding: 10px 12px 0; }
+  .kq-receipt-actions { max-width: 302px; }
+  .kq-review-nudge { max-width: 302px; }
+}
+

@@ -1138,8 +1138,6 @@
 
   /* ---------------- 8. CARD RENDERERS ---------------- */
   function dishCard(d) {
-    const serveTxt = servesLabel(d);
-    const serveHi = d.highlightServes || Number(d.serves) === 2;
     return `<article class="kq-card">
       <div class="kq-card-img">
         <img src="${IMG + d.img}" alt="${esc(d.name)}" loading="lazy">
@@ -1147,7 +1145,6 @@
       </div>
       <div class="kq-card-body">
         <h3 class="kq-card-title">${esc(d.name)}</h3>
-        ${serveTxt ? `<span class="kq-serve-pill${serveHi && d.highlightServes ? " highlight" : ""}"><i class="fa-solid fa-utensils"></i> ${serveTxt}</span>` : ""}
         <p class="kq-card-desc">${esc(d.desc)}</p>
         <div class="kq-card-foot">
           <span class="kq-price">${money(d.price)}</span>
@@ -1618,6 +1615,8 @@
           localStorage.setItem("kq_last_order", JSON.stringify(slim));
         } catch (e) {}
 
+        const checkoutWrap = document.querySelector(".bp-checkout");
+        if (checkoutWrap) checkoutWrap.hidden = true;
         const stage = document.getElementById("kqReceiptStage");
         stage.hidden = false;
         document.getElementById("kqOrderNo").textContent = orderNo;
@@ -1627,35 +1626,32 @@
         const itemMeta = (i) => [i.portion, i.spice].filter(Boolean).join(" · ");
 
         paper.innerHTML = `
-          <div class="r-hero">
-            <div class="r-crown"><i class="fa-solid fa-crown"></i></div>
-            <b>KITCHEN QUEEN</b>
-            <small>Karachi · Ghar ka khana</small>
-            <span class="r-status ${pending ? "wait" : "ok"}">${pending ? "Waiting for admin approval" : "Order confirmed"}</span>
+          <div class="r-head">
+            <div class="r-brand">KITCHEN QUEEN</div>
+            <div class="r-sub">Karachi · Ghar ka khana</div>
+            <div class="r-title">CASH RECEIPT</div>
+            <div class="r-status ${pending ? "wait" : "ok"}">${pending ? "Awaiting approval" : "Order confirmed"}</div>
           </div>
           <div class="r-body">
-            <div class="r-row"><span>Order</span><span><b>${orderNo}</b></span></div>
+            <div class="r-row"><span>Receipt</span><span>${orderNo}</span></div>
             <div class="r-row"><span>Date</span><span>${when}</span></div>
-            <div class="r-row"><span>Customer</span><span>${esc(name)}</span></div>
+            <div class="r-row"><span>Customer</span><span class="r-right">${esc(name)}</span></div>
             <div class="r-row"><span>Phone</span><span>${esc(phone)}</span></div>
             <div class="r-row"><span>Address</span><span class="r-right">${esc(address)}</span></div>
             ${note ? `<div class="r-row"><span>Note</span><span class="r-right">${esc(note)}</span></div>` : ""}
-            <div class="r-pay ${selectedPay}">
-              ${selectedPay === "easypaisa"
-                ? `<i class="fa-solid fa-mobile-screen"></i><span>EasyPaisa to <b>${esc(EASYPAISA.name)}</b><small>${esc(EASYPAISA.number)}</small></span>`
-                : `<i class="fa-solid fa-money-bill-wave"></i><span>Cash on Delivery<small>Pay the rider at your door</small></span>`}
-            </div>
+            <div class="r-row"><span>Payment</span><span>${esc(payLabel)}</span></div>
             <div class="r-divider"></div>
             ${state.cart.map((i) => `<div class="r-row item"><span class="r-qty">${i.qty}×</span><span class="r-name">${esc(i.name)}${itemMeta(i) ? `<div class="r-meta">${esc(itemMeta(i))}</div>` : ""}</span><span>${money(i.unit * i.qty)}</span></div>`).join("")}
             <div class="r-divider"></div>
             <div class="r-row"><span>Subtotal</span><span>${money(t.sub)}</span></div>
             ${t.discount ? `<div class="r-row"><span>Discount</span><span>- ${money(t.discount)}</span></div>` : ""}
             <div class="r-row"><span>Delivery</span><span>${t.delivery ? money(t.delivery) : "FREE"}</span></div>
-            <div class="r-total-row"><span>Total</span><span>${money(t.total)}</span></div>
+            <div class="r-total-row"><span>TOTAL</span><span>${money(t.total)}</span></div>
             ${epSlipData ? `<div class="r-slip"><img src="${epSlipData}" alt="Payment screenshot"></div>` : ""}
             <p class="r-thanks">${pending
-              ? "Payment screenshot received.<br>Please wait while admin verifies your transfer.<br>Your order will be confirmed after approval."
-              : "Shukriya! Your food is being prepared with love.<br><b>Estimated delivery: 40–55 min</b>"}</p>
+              ? "Screenshot received. Admin will confirm shortly."
+              : "Thank you for shopping!<br>Est. delivery 40–55 min"}</p>
+            <div class="r-barcode" aria-hidden="true"></div>
             <p class="r-center">${orderNo}</p>
             <p class="r-footer-note">Kitchen Queen · Karachi</p>
           </div>
@@ -1698,6 +1694,8 @@
           lastOrder = null;
           const stage = document.getElementById("kqReceiptStage");
           stage.hidden = true;
+          const checkoutWrap = document.querySelector(".bp-checkout");
+          if (checkoutWrap) checkoutWrap.hidden = false;
           document.getElementById("kqReceiptActions").hidden = true;
           const nudgeOff = document.getElementById("kqReviewNudge");
           if (nudgeOff) nudgeOff.hidden = true;
@@ -1714,25 +1712,27 @@
         printBtn.addEventListener("click", () => {
           const paper = document.getElementById("kqPaper");
           if (!paper) return;
-          const win = window.open("", "_blank", "width=400,height=700");
+          const win = window.open("", "_blank", "width=360,height=640");
           win.document.write(`<!DOCTYPE html><html><head><title>Receipt</title>
             <style>
-              body{font-family:Poppins,Segoe UI,sans-serif;padding:12px;max-width:380px;margin:0 auto;color:#1b1400;background:#fff}
-              .r-hero{background:linear-gradient(180deg,#ffc107,#f3a812);text-align:center;padding:18px 12px;border-radius:14px 14px 0 0}
-              .r-hero b{display:block;letter-spacing:3px}
-              .r-hero small{font-size:.7rem}
-              .r-status{display:inline-block;margin-top:8px;background:#111;color:#ffc107;padding:4px 10px;border-radius:999px;font-size:.68rem;font-weight:700}
-              .r-body{padding:12px 6px}
-              .r-divider{border-top:1px dashed #c9a227;margin:8px 0}
-              .r-row{display:flex;justify-content:space-between;font-size:.82rem;margin:4px 0;gap:8px}
-              .r-total-row{display:flex;justify-content:space-between;font-weight:800;font-size:1rem;margin-top:6px}
-              .r-pay{display:flex;gap:8px;align-items:center;padding:8px;border:1px solid #ffe082;border-radius:10px;margin:8px 0}
-              .r-pay span{display:flex;flex-direction:column}
-              .r-thanks,.r-center,.r-footer-note{text-align:center;font-size:.78rem;margin:6px 0}
-              .r-qty{margin-right:6px;font-weight:700}
-              .r-meta{font-size:.7rem;color:#666}
-              .r-slip img{max-width:100%;max-height:160px;object-fit:contain}
-              .r-right{text-align:right;max-width:58%}
+              @page{size:80mm auto;margin:4mm}
+              body{font-family:"Courier New",Roboto Mono,ui-monospace,monospace;padding:8px 10px;width:80mm;max-width:80mm;margin:0 auto;color:#111;background:#fff}
+              .r-head{text-align:center;padding:4px 0 8px}
+              .r-brand{font-weight:800;letter-spacing:2px;font-size:13px}
+              .r-sub{font-size:10px;color:#555}
+              .r-title{margin-top:6px;font-weight:800;letter-spacing:1.5px;font-size:12px}
+              .r-status{display:inline-block;margin-top:4px;font-size:10px;font-weight:700;text-transform:uppercase}
+              .r-body{padding:0}
+              .r-divider{border-top:1px dashed #888;margin:6px 0}
+              .r-row{display:flex;justify-content:space-between;font-size:11px;margin:2px 0;gap:8px}
+              .r-total-row{display:flex;justify-content:space-between;font-weight:800;font-size:13px;margin-top:4px;border-top:1px dashed #888;padding-top:6px}
+              .r-thanks,.r-center,.r-footer-note{text-align:center;font-size:11px;margin:6px 0}
+              .r-qty{margin-right:4px;font-weight:700}
+              .r-meta{font-size:10px;color:#555}
+              .r-slip img{max-width:100%;max-height:90px;object-fit:contain}
+              .r-right{text-align:right;max-width:62%}
+              .r-barcode{height:36px;margin:8px 0 4px;background:repeating-linear-gradient(90deg,#111 0 2px,transparent 2px 4px,#111 4px 7px,transparent 7px 9px,#111 9px 10px,transparent 10px 13px)}
+              .r-zigzag{display:none}
             </style></head><body>${paper.innerHTML}</body></html>`);
           win.document.close();
           win.focus();
