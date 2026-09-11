@@ -242,7 +242,6 @@
     "North Karachi - Sector 8",
     "North Karachi - Sector 11A",
     "North Karachi - Sector 15-A/1",
-    "North Karachi Industrial Area",
     "North Nazimabad - Block A",
     "North Nazimabad - Block B",
     "North Nazimabad - Block C",
